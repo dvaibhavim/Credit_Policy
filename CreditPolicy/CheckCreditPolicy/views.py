@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
+@csrf_exempt
 def CheckCreditPolicy(request):    
     try:
         response_data = {}
-        data = request.POST.get('data') 
+        data = request.body.decode('utf-8')
         Policy = json.loads(data)
         msg = " "
         reason = " "
@@ -29,7 +32,7 @@ def CheckCreditPolicy(request):
         else:
             msg = "ACCEPT"
     except Exception as e:
-        msg ="Error!!! " +str(e)
+        msg ="Error!!! " + str(e) +str(Policy['payment_remarks'])
         reason = "Error in Input"
     response_data['message'] = str(msg)
     response_data['reason'] = reason
