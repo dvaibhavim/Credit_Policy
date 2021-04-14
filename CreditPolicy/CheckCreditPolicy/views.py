@@ -32,7 +32,7 @@ def CheckCreditPolicy(request):
         else:
             msg = "ACCEPT"
     except Exception as e:
-        msg ="Error!!! " + str(e) +str(Policy['payment_remarks'])
+        msg ="Error!!! Input parameter " + str(e) + "missing"
         reason = "Error in Input"
     response_data['message'] = str(msg)
     response_data['reason'] = reason
