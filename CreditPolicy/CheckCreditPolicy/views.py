@@ -4,6 +4,9 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+def handle404(request, exception):
+     return render(request, '404.html', status=404)
+
 @csrf_exempt
 def CheckCreditPolicy(request):    
     try:

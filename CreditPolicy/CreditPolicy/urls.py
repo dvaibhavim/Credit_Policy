@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from CheckCreditPolicy.views import CheckCreditPolicy
-
+from CheckCreditPolicy.views import CheckCreditPolicy, handle404
+from django.conf.urls import handler404
+handler404 = handle404
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('CheckCreditPolicy/',CheckCreditPolicy)
